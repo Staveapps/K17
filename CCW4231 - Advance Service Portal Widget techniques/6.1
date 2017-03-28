@@ -1,0 +1,48 @@
+Modify the Client Script to look like this:
+
+function($scope,$http,snRecordWatcher,$rootScope) {
+  /* widget controller */
+  var c = this;
+	c.data.loading = true;
+	c.data.table = c.options.table || "incident";
+	c.data.query = c.options.query || "";
+	c.data.template = c.options.template || "task-category";
+	function getData(){
+	$http.get('/api/now/table/'+c.data.table+'?sysparm_query='+c.data.query).success(function(response){
+		c.data.loading=false;
+		c.data.list = response.result;
+		$rootScope.$broadcast("K17ListWidgetUpdated",c.data.list);
+	})
+	}
+	getData();
+	
+	snRecordWatcher.initList(c.data.table, c.data.query);
+	$scope.$on('record.updated', function(name, data) {
+		getData();
+	});
+}
+
+
+Enter the following code in the HTML Template Field:
+
+<div>
+<!-- your widget template -->
+  <h2 class="jumbotron">
+    Total Records:{{c.data.count}}
+  </h2>
+</div>
+
+
+
+Enter the following code in the Client Script field:
+
+function($scope) {
+  /* widget controller */
+  var c = this;
+	c.data.count = 0;
+	
+	$scope.$on("K17ListWidgetUpdated",function(evt,results){
+		console.log(results)
+		c.data.count = results.length;
+	})
+}
