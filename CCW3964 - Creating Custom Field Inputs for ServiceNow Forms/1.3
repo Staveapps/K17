@@ -1,0 +1,19 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<j:jelly xmlns:j="jelly:core" xmlns:g="glide" xmlns:g2="null" xmlns:j2="null" trim="false">
+   <g:requires name="jquery.knob.jsdbx" params="cache=$[jvar_stamp]" />
+   <div class="knob_container" style="text-align:center">
+      <input type="text" value="0" class="dial" />
+   </div>
+   <script>$j(function() {
+		$j(".dial").knob({
+			fgColor:"#66CC66",
+			angleOffset:-125,
+			angleArc:250,
+			width:90,
+			height:90,
+			'release' : function (v) { g_form.setValue('u_percent_complete',v)}
+		});
+		$j(".dial").val(g_form.getValue('u_percent_complete')).trigger('change');
+    });</script>
+</j:jelly>
