@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<j:jelly xmlns:j="jelly:core" xmlns:g="glide" xmlns:g2="null" xmlns:j2="null" trim="false">
+   <!-- Contact Selector Container begin -->
+   <ul class="contact_selector">
+      <li id="contact_email" class="contact_option" onClick="selectOption(this,'email')">
+         <img src="contact_selector_email.png" />
+      </li>
+      <li id="contact_phone" class="contact_option" onClick="selectOption(this,'phone')">
+         <img src="contact_selector_phone.png" />
+      </li>
+      <li id="contact_self-service" class="contact_option" onClick="selectOption(this,'self-service')">
+         <img src="contact_selector_self-service.png" />
+      </li>
+      <li id="contact_walk-in" class="contact_option" onClick="selectOption(this,'walk-in')">
+         <img src="contact_selector_walk-in.png" />
+      </li>
+   </ul>
+   <!-- Contact Selector Container End -->
+   <style>.contact_selector{
+	   overflow:auto;
+	   text-align:center;
+	   padding:0;
+	   }
+	   .contact_option{
+	   width:auto;
+	   display:inline-block;
+	   cursor:pointer;
+	   margin:0 5px;
+	   background:lightblue;
+	   border-radius: 5px;
+	   opacity: .5;
+	   }
+	   .contact_option:hover,.contact_option.selected{
+	   opacity:1;
+	   }</style>
+ 
+
+  <script>//Function called when clicking on an option
+	  
+ function selectOption(obj,val){
+		$j(".contact_option").removeClass("selected");
+		$j(obj).addClass("selected");
+		g_form.setValue('contact_type',val)
+		}
+	   //On load read the value from contact type and select the correct contact option
+		$j(document).ready(function(){
+		$j("#contact_"+g_form.getValue("contact_type")).addClass("selected");
+		});</script>
+</j:jelly>
+
