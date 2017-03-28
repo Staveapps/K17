@@ -1,0 +1,30 @@
+Modify Client Script to look like this
+
+function($scope,$http) {
+  /* widget controller */
+  var c = this;
+	c.data.loading = true;
+	c.data.table = c.options.table || "incident";
+	c.data.query = c.options.query || "";
+	c.data.template = c.options.template || "task-category";
+	$http.get('/api/now/table/'+c.data.table+'?sysparm_query='+c.data.query).success(function(response){
+		c.data.loading=false;
+		c.data.list = response.result;
+	})
+}
+
+Modify HTML Template to look like this
+
+<div class="panel panel-{{c.options.color}}">
+<!-- your widget template -->
+  <div class="panel-heading">
+    {{c.options.title}}
+  </div>
+  <div class="panel-body">
+   <span ng-if="c.data.loading"><i  class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+     <span class="sr-only">Loading...</span></span>
+    <ul class="list-group">
+   <li class="list-group-item" ng-repeat="item in c.data.list" ng-include="c.data.template"></li>
+  </ul>
+    </div>
+</div>
