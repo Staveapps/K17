@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+<script language="javascript" src="Angular_1_3_framework.jsdbx" />
+	<script src="angular_assigned_to.jsdbx?v=${gs.nowDateTime()}"></script>
+	<script language="javascript" src="service.sn-glideAjax.jsdbx" />
+	<style>
+	.assignedTo{
+    display: inline-block;
+    cursor: pointer;
+    margin: 0 5px;
+    background: lightblue;
+    border-radius: 5px;
+	padding:5px;
+	text-align:center;
+	font-weight:bold;
+	opacity:.5;
+	}
+	.assignedTo:hover,.assignedTo.selected{
+	opacity:1;
+	}
+	</style>
+	<div sn-ng-formatter="assignedTo">
+   <div id="AssignedToCtrl" ng-controller="AssignedToCtrl">
+	   <div class="assignedTo" ng-repeat="assignedToItem in assignedTo" ng-click="selectAssignedTo(assignedToItem.id,$index)" ng-class="{selected: assignedToItem.id == selected}" >
+	<div>{{assignedToItem.first}} </div>
+	<div>{{assignedToItem.last}}</div>
+</div>
+		</div>
+	</div>
+</j:jelly>
