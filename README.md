@@ -11,7 +11,9 @@ The following components make up the lab:
 1.2	Create Dynamic Contact Type Formatter
 
 1.3	Create Percent Complete Knob
+
 1.4	Assigned to Selector Using AngularJS
+
 1.5	Challenge: Work Notes Carousel
 
 
