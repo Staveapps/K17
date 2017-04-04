@@ -1,0 +1,49 @@
+(function() {
+
+    /* populate the 'data' object */
+
+    /* e.g., data.table = $sp.getValue('table'); */
+
+
+
+	if(input){
+
+		//define the variable to hold our list
+
+		data.list = [];
+
+		
+
+		//Query the table
+
+    var gr = new GlideRecord('incident');
+
+    gr.addQuery('active', true);
+
+    gr.query()
+
+    while (gr.next()) {
+
+			//load values into object
+
+			var record_obj = {};
+
+			record_obj.number = gr.number.getDisplayValue();
+
+			record_obj.short_description = gr.short_description.getDisplayValue();
+
+			record_obj.priority = gr.priority.getDisplayValue();
+
+			record_obj.category = gr.category.getDisplayValue();
+
+      //add object to the list  
+
+			data.list.push(record_obj);
+
+    }
+
+	}
+
+})();
+
+
