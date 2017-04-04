@@ -1,0 +1,6 @@
+<div>
+<!-- your widget template -->
+  <h2 class="jumbotron">
+    Total Records:{{c.data.count}}
+  </h2>
+</div>
