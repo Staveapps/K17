@@ -1,0 +1,6 @@
+function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+   if (isLoading || newValue === '') {
+      return;
+   }
+	angular.element($j('#AssignedToCtrl')).scope().get();
+}
