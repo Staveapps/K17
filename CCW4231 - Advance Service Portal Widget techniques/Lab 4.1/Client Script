@@ -1,0 +1,12 @@
+function($scope,$http) {
+  /* widget controller */
+  var c = this;
+	c.data.loading = true;
+	c.data.table = c.options.table || "incident";
+	c.data.query = c.options.query || "";
+	c.data.template = c.options.template || "task-category";
+	$http.get('/api/now/table/'+c.data.table+'?sysparm_query='+c.data.query).success(function(response){
+		c.data.loading=false;
+		c.data.list = response.result;
+	})
+}
