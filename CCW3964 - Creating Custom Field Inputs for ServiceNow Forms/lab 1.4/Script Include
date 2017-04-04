@@ -1,0 +1,17 @@
+var AngularGroupMembers = Class.create();
+AngularGroupMembers.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	get: function() {
+		var group = this.getParameter('group');
+		var list = [];
+		if(group !=''){
+			var assignedTos = new GlideRecord('sys_user_grmember');
+			assignedTos.addQuery('group',group);
+			assignedTos.query();
+			while (assignedTos.next()) {
+				list.push({first: assignedTos.user.first_name+'',last:assignedTos.user.last_name+'',id:assignedTos.user.sys_id+''});
+			}	
+		}
+		return new global.JSON().encodeArray(list);
+	},
+	type: 'AngularGroupMembers'
+});
