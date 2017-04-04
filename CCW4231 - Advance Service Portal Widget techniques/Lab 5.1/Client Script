@@ -11,3 +11,10 @@ function($scope,$http,snRecordWatcher) {
 		c.data.list = response.result;
 	})
 	}
+	getData();
+	
+	snRecordWatcher.initList(c.data.table, c.data.query);
+	$scope.$on('record.updated', function(name, data) {
+		getData();
+	});
+}
