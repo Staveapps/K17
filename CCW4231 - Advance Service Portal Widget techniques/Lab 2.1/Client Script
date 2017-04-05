@@ -1,4 +1,4 @@
-Modify the Client Script to look like this:
+
 function($scope,$http) {
   /* widget controller */
   var c = this;
